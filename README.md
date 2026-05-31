@@ -32,7 +32,7 @@ genuinely valuable, not a toy demo.
 
 ## 2. Demo video
 
-**▶️ https://youtu.be/VaBuNRKaI5E**
+**▶️ https://www.youtube.com/shorts/YmA10aA1fwc**
 
 If you want to run the demo yourself in 2 commands, see the **Quick start**
 section below. The dashboard alone — no voice required — demonstrates the
