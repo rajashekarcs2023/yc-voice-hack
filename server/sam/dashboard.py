@@ -21,19 +21,24 @@ Then open http://localhost:7861.
 
 from __future__ import annotations
 
+import asyncio
 import json
 import time
+import traceback
 from pathlib import Path
 
-import asyncio
-
 import uvicorn
+from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse, JSONResponse
+from loguru import logger
 from pydantic import BaseModel
 
-from . import db
-from .outbound_caller import source_parts
+# Load .env BEFORE importing modules that read env vars at import time.
+load_dotenv(override=True)
+
+from . import db  # noqa: E402
+from .outbound_caller import source_parts  # noqa: E402
 
 
 app = FastAPI(title="Sam — Rivera Plumbing Dispatch")
@@ -82,13 +87,17 @@ async def trigger_source(req: SourceRequest) -> JSONResponse:
     voice call. Returns immediately with the request_id; the dashboard's
     polling loop picks up the calls as they happen.
     """
-    asyncio.create_task(
-        source_parts(
-            part_query=req.part_query,
-            quantity=req.quantity,
-            max_price_dollars=req.max_price_dollars,
-        )
-    )
+    async def _run() -> None:
+        try:
+            await source_parts(
+                part_query=req.part_query,
+                quantity=req.quantity,
+                max_price_dollars=req.max_price_dollars,
+            )
+        except Exception:
+            logger.error(f"source_parts failed:\n{traceback.format_exc()}")
+
+    asyncio.create_task(_run())
     return JSONResponse({"ok": True, "message": "Sourcing kicked off — watch the panel."})
 
 

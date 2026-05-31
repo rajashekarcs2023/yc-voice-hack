@@ -32,11 +32,11 @@ genuinely valuable, not a toy demo.
 
 ## 2. Demo video
 
-**[< 60s video link here — record after the demo runs cleanly]**
+**▶️ https://youtu.be/VaBuNRKaI5E**
 
-If you're reading before the video is up: see the **Quick start** section to run
-the demo yourself in 2 commands. The dashboard alone — no voice required —
-demonstrates the agent-to-agent flow.
+If you want to run the demo yourself in 2 commands, see the **Quick start**
+section below. The dashboard alone — no voice required — demonstrates the
+agent-to-agent flow.
 
 ---
 
