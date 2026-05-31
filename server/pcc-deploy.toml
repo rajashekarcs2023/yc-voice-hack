@@ -1,0 +1,9 @@
+agent_name = "sam-dispatcher"
+secret_set = "sam-secrets"
+agent_profile = "agent-1x"
+
+[krisp_viva]
+	audio_filter = "tel"
+
+[scaling]
+	min_agents = 1
